@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-
+const date = new Date()
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -22,7 +22,10 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-   reporter: [['html', { open: 'never' }]],
+   reporter: [
+    ['html', { outputFolder: `playwright-report/report_${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}-${date.getHours()}-${date.getMinutes()}`, open: 'never' }],
+    ['list', { printSteps: true }]
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */

@@ -1,0 +1,86 @@
+✅ Basic CSS Selector Strategies
+
+1. Tag Selector
+    input          // selects all <input> tags
+
+2. ID Selector
+    #login         // selects element with id="login"
+
+3. Class Selector
+    .button        // selects elements with class="button"
+
+✅ Attribute Selectors
+
+4. Exact Match
+    input[name="email"]         // selects input with name="email"
+
+5. Partial Match
+| CSS Selector    | Matches When Attribute... | Example                   |
+| --------------- | ------------------------- | ------------------------- |
+| `[attr^="val"]` | Starts with value         | `input[name^="user"]`     |
+| `[attr$="val"]` | Ends with value           | `img[src$=".png"]`        |
+| `[attr*="val"]` | Contains value            | `div[class*="container"]` |
+
+✅ Combine Selectors
+
+6. Tag + Class
+    button.primary        // <button class="primary">
+
+7. Tag + ID
+    input#email           // <input id="email">
+
+8. Multiple Classes
+    div.box.shadow        // <div class="box shadow">
+
+✅ Parent > Child and Descendant
+
+9. Direct Child
+    div > span        // span is direct child of div
+
+10. Any Descendant
+    div span          // span is anywhere inside div
+
+✅ Sibling Selectors
+
+11. Adjacent Sibling
+    label + input     // input comes right after label
+
+12. General Sibling
+    label ~ input     // input comes after label (not necessarily right after)
+
+✅ Positional Selectors
+
+13. :nth-child()
+    ul li:nth-child(2)     // second li inside ul
+
+14. :first-child / :last-child
+    ul li:first-child      // first item
+    ul li:last-child       // last item
+
+✅ :not() Selector
+
+15. Exclude Elements
+    input:not([type="submit"])     // all inputs except submit buttons
+
+🧾 CSS Selector vs XPath Cheat Sheet
+
+| Goal                            | CSS Selector          | XPath                                 |
+| ------------------------------- | --------------------- | ------------------------------------- |
+| **Select by tag**               | `div`                 | `//div`                               |
+| **Select by ID**                | `#login`              | `//*[@id='login']`                    |
+| **Select by class**             | `.btn`                | `//*[contains(@class, 'btn')]`        |
+| **Select by attribute**         | `input[name="email"]` | `//input[@name='email']`              |
+| **Contains attribute value**    | `input[name*="mail"]` | `//input[contains(@name,'mail')]`     |
+| **Starts with attribute value** | `input[name^="user"]` | `//input[starts-with(@name,'user')]`  |
+| **Ends with attribute value**   | `input[name$="id"]`   | ❌ *Not supported in XPath 1.0*       |
+| **Direct child**                | `div > span`          | `//div/span`                          |
+| **Any descendant**              | `div span`            | `//div//span`                         |
+| **Nth-child (position)**        | `ul li:nth-child(2)`  | `(//ul/li)[2]`                        |
+| **First child**                 | `ul li:first-child`   | `(//ul/li)[1]`                        |
+| **Last child**                  | `ul li:last-child`    | `//ul/li[last()]`                     |
+| **Adjacent sibling**            | `label + input`       | `//label/following-sibling::input[1]` |
+| **General sibling**             | `label ~ input`       | `//label/following-sibling::input`    |
+| **Select by text**              | ❌ Not supported      | `//button[text()='Submit']`           |
+| **Contains text**               | ❌ Not supported      | `//*[contains(text(),'Submit')]`      |
+| **Go to parent**                | ❌ Not supported      | `//span/..`                           |
+| **Traverse back (preceding)**   | ❌ Not supported      | `//input/preceding::label`            |
