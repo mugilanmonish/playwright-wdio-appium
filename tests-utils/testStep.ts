@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { createSession } from "../mobileActions/launchApp";
 import { tapOnElement, takeScreenshot } from "../mobileActions/perfomActions";
+import { LoginPage } from "../pages/login.page";
 
 export async function execute(testName: string, platform: string) {
     test(`${testName}`, async ({ page }, testInfo) => {
@@ -27,6 +28,7 @@ export async function execute(testName: string, platform: string) {
                     const watchNow: string = `//android.widget.Button[@resource-id="com.anilab.android:id/buttonWatchNow"]`
                     await tapOnElement(driver, watchNow);
 
+                   
                     const profileBtn: string = `android=new UiSelector().text("Profile")`;
                     await tapOnElement(driver, profileBtn);
 
@@ -36,8 +38,11 @@ export async function execute(testName: string, platform: string) {
                     const signUpBtn: string = `android=new UiSelector().resourceId("com.anilab.android:id/textSignUp")`;
                     await tapOnElement(driver, signUpBtn);
 
-                    const errorEle: string = `android=new UiSelector().resourceId("com.anilab.android:id/buttonSignU")`;
-                    await tapOnElement(driver, errorEle);
+                    let loginPage: LoginPage = new LoginPage(driver);
+                    await loginPage.login('mugilanmonish@gmail.com', 'jkfhs')
+
+                    // const errorEle: string = `android=new UiSelector().resourceId("com.anilab.android:id/buttonSignU")`;
+                    // await tapOnElement(driver, errorEle);
 
                 } else {
                     await driver.url('https://anilab.to/');

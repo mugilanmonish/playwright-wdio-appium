@@ -32,5 +32,7 @@ export async function createSession(platform: string) {
   };
 
   const driver = await remote(wdOpts);
+
   return driver;
 }
+
